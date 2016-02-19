@@ -27,21 +27,25 @@ module Openlogi
         raise NotImplementedError
       end
 
+      def resource_class
+        raise NotImplementedError
+      end
+
       private
 
       def perform_request(method, resource, options = {})
         Openlogi::Request.new(client, method, resource, options).perform
       end
 
-      def perform_request_with_object(method, resource, options, klass)
+      def perform_request_with_object(method, resource, options)
         response = perform_request(method, resource, options)
-        klass.new(response)
+        resource_class.new(response)
       end
 
-      def perform_request_with_objects(method, resource, options, klass)
+      def perform_request_with_objects(method, resource, options)
         resource_key = resource.split('/').first
         perform_request(method, resource, options).fetch(resource_key, []).collect do |element|
-          klass.new(element)
+          resource_class.new(element)
         end
       end
     end
