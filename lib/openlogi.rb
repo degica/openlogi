@@ -1,5 +1,7 @@
 require "openlogi/version"
+require "typhoeus"
+require "json"
+require "active_support/core_ext/module/delegation"
 
-module Openlogi
-  # Your code goes here...
-end
+require "openlogi/request"
+require "openlogi/response"
