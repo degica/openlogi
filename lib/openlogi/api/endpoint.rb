@@ -7,26 +7,6 @@ module Openlogi
         @client = client
       end
 
-      def find(id)
-        raise NotImplementedError
-      end
-
-      def all
-        raise NotImplementedError
-      end
-
-      def update(id, params)
-        raise NotImplementedError
-      end
-
-      def create(params)
-        raise NotImplementedError
-      end
-
-      def destroy(id)
-        raise NotImplementedError
-      end
-
       def resource_class
         raise NotImplementedError
       end
