@@ -10,6 +10,7 @@ require "openlogi/api/shipments"
 
 require "openlogi/address"
 require "openlogi/stock"
+require "openlogi/international_info"
 require "openlogi/item"
 require "openlogi/warehousing"
 require "openlogi/shipment"
