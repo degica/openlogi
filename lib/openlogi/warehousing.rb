@@ -8,5 +8,6 @@ module Openlogi
     attribute :tracking_codes, Array[String]
     attribute :memo, String
     attribute :status, String
+    attribute :created_at, DateTime
   end
 end
