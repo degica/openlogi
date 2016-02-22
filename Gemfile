@@ -2,5 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem "pry"
-gem "pry-byebug"
+group :development, :test do
+  gem "pry"
+  gem "pry-byebug"
+end
