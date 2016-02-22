@@ -13,5 +13,6 @@ module Openlogi
     attribute :international_info, Openlogi::InternationalInfo
     attribute :stock, Stock
     attribute :quantity, Integer
+    attribute :backorder_if_unavailable, Boolean
   end
 end
