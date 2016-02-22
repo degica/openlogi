@@ -28,6 +28,6 @@ module Openlogi
     attribute :shipping_email, String
     attribute :message, String
     attribute :status, String
-    attribute :items, Array[Item]
+    attribute :items, Array[Openlogi::Item]
   end
 end
