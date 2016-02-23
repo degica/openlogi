@@ -1,10 +1,11 @@
 module Openlogi
   class Response
     include Enumerable
+    extend Forwardable
 
     attr_reader :response
-    delegate :success?, to: :response
-    delegate :each, :each_pair, :fetch, :to_hash, to: :json_response
+    def_delegator :response, :success?
+    def_delegators :json_response, :each, :each_pair, :fetch, :to_hash
 
     def initialize(response)
       @response = response
