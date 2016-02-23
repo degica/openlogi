@@ -3,7 +3,7 @@ module Openlogi
     def self.coerce(v)
       case v
       when String
-        !!(v =~ /^(true|t|yes|y|1)$/i)
+        !!(v =~ /\A(true|t|yes|y|1)\z/i)
       when Numeric
         !v.to_i.zero?
       else
