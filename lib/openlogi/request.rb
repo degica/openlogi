@@ -33,10 +33,10 @@ module Openlogi
 
     def headers
       {
-        Accept: "application/json",
-        'Content-Type': 'application/json',
-        'X-Api-Version': "1.3",
-        Authorization: "Bearer #{client.access_token}"
+        :Accept => "application/json",
+        :'Content-Type' => 'application/json',
+        :'X-Api-Version' => "1.3",
+        :Authorization => "Bearer #{client.access_token}"
       }
     end
   end
