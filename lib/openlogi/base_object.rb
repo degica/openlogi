@@ -6,5 +6,9 @@ module Openlogi
     property :error
     property :errors
     property :error_description
+
+    def valid?
+      error.nil?
+    end
   end
 end
