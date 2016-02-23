@@ -18,13 +18,14 @@ module Openlogi
       end
 
       def perform_request_with_object(method, resource, options)
-        response = perform_request(method, resource, options)
+        client.last_response = response = perform_request(method, resource, options)
         resource_class.new(response)
       end
 
       def perform_request_with_objects(method, resource, options)
         resource_key = resource.split('/').first
-        perform_request(method, resource, options).fetch(resource_key, []).collect do |element|
+        client.last_response = response = perform_request(method, resource, options)
+        response.fetch(resource_key, []).collect do |element|
           resource_class.new(element)
         end
       end

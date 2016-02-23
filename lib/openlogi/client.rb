@@ -1,6 +1,7 @@
 module Openlogi
   class Client
     attr_reader :access_token, :test_mode
+    attr_accessor :last_response
 
     def initialize(access_token, test_mode: true)
       @access_token = access_token
