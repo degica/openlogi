@@ -1,5 +1,22 @@
 require "openlogi/version"
+require "typhoeus"
+require "json"
+require "active_support/core_ext/module/delegation"
+require "hashie"
 
-module Openlogi
-  # Your code goes here...
-end
+require "openlogi/api/items"
+require "openlogi/api/warehousings"
+require "openlogi/api/shipments"
+
+require "openlogi/boolean"
+require "openlogi/datetime"
+require "openlogi/address"
+require "openlogi/stock"
+require "openlogi/international_info"
+require "openlogi/delivery_options"
+require "openlogi/item"
+require "openlogi/warehousing"
+require "openlogi/shipment"
+require "openlogi/request"
+require "openlogi/response"
+require "openlogi/client"

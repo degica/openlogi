@@ -18,7 +18,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = Openlogi::Client.new("apikey")
+client.items.all
+#=> [#<Openlogi::Item:0x005622970fc7c8
+#  @barcode="12345111",
+#  @code="testsku",
+#  @id="OS239-I000001",
+#  @name="Test",
+#  @price="123">]
+```
 
 ## Development
 
