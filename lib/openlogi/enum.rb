@@ -7,7 +7,11 @@ module Openlogi
     end
 
     def self.coerce(v)
-      @values.include?(v.to_sym) ? v.to_sym : nil
+      if @values.include?(normalized = v.to_sym)
+        normalized
+      else
+        raise ArgumentError, "Value must be one of #{@values.join(", ")}"
+      end
     end
   end
 end
