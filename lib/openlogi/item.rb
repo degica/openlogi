@@ -14,6 +14,7 @@ module Openlogi
     property :international_info, coerce: InternationalInfo
     property :stock, coerce: Stock
     property :quantity, coerce: Integer
+    property :gift_wrapping_type, coerce: Enum[:NAVY, :RED, :PINK, :BROWN, :WHITE]
     property :backorder_if_unavailable, coerce: Boolean
   end
 end
