@@ -2,6 +2,6 @@ require "openlogi/base_object"
 
 module Openlogi
   class InternationalInfo < BaseObject
-    attribute :invoice_summary, String
+    property :invoice_summary, coerce: String
   end
 end

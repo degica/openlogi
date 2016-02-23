@@ -1,13 +1,14 @@
 require "openlogi/base_object"
 require "openlogi/item"
+require "openlogi/datetime"
 
 module Openlogi
   class Warehousing < BaseObject
-    attribute :id, String
-    attribute :items, Array[Openlogi::Item]
-    attribute :tracking_codes, Array[String]
-    attribute :memo, String
-    attribute :status, String
-    attribute :created_at, DateTime
+    property :id
+    property :items, coerce: Array[Item]
+    property :tracking_codes, coerce: Array[String]
+    property :memo
+    property :status
+    property :created_at, coerce: DateTime
   end
 end

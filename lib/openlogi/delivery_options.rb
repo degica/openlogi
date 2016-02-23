@@ -1,9 +1,10 @@
 require "openlogi/base_object"
+require "openlogi/boolean"
 
 module Openlogi
   class DeliveryOptions < BaseObject
-    attribute :box_delivery, Boolean
-    attribute :telephone, Boolean
-    attribute :fragile_item, Boolean
+    property :box_delivery, coerce: Boolean
+    property :telephone, coerce: Boolean
+    property :fragile_item, coerce: Boolean
   end
 end

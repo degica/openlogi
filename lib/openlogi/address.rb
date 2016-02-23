@@ -2,13 +2,13 @@ require "openlogi/base_object"
 
 module Openlogi
   class Address < BaseObject
-    attribute :postcode, String
-    attribute :prefecture, String
-    attribute :address1, String
-    attribute :address2, String
-    attribute :name, String
-    attribute :company, String
-    attribute :division, String
-    attribute :phone, String
+    property :postcode
+    property :prefecture
+    property :address1
+    property :address2
+    property :name
+    property :company
+    property :division
+    property :phone
   end
 end

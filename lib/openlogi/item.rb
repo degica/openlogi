@@ -1,18 +1,19 @@
 require "openlogi/base_object"
 require "openlogi/stock"
 require "openlogi/international_info"
+require "openlogi/boolean"
 
 module Openlogi
   class Item < BaseObject
-    attribute :id, String
-    attribute :code, String
-    attribute :name, String
-    attribute :price, Integer
-    attribute :unit_price, Integer
-    attribute :barcode, String
-    attribute :international_info, Openlogi::InternationalInfo
-    attribute :stock, Stock
-    attribute :quantity, Integer
-    attribute :backorder_if_unavailable, Boolean
+    property :id
+    property :code
+    property :name
+    property :price, coerce: Integer
+    property :unit_price, coerce: Integer
+    property :barcode
+    property :international_info, coerce: InternationalInfo
+    property :stock, coerce: Stock
+    property :quantity, coerce: Integer
+    property :backorder_if_unavailable, coerce: Boolean
   end
 end

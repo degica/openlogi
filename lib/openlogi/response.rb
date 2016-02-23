@@ -4,7 +4,7 @@ module Openlogi
 
     attr_reader :response
     delegate :success?, to: :response
-    delegate :each, :fetch, :to_hash, to: :json_response
+    delegate :each, :each_pair, :fetch, :to_hash, to: :json_response
 
     def initialize(response)
       @response = response
