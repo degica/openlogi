@@ -41,7 +41,7 @@ describe Openlogi::Api::Items do
         expect(item.stock.available).to eq(2)
         expect(item.stock.shipping).to eq(1)
         expect(item.stock.quantity).to eq(3)
-        expect(item.stock.size).to eq("M")
+        expect(item.stock.size).to eq(:M)
         expect(item.stock.weight).to eq(700)
       end
     end
@@ -94,7 +94,7 @@ describe Openlogi::Api::Items do
         expect(first_item.stock.available).to eq(2)
         expect(first_item.stock.shipping).to eq(1)
         expect(first_item.stock.quantity).to eq(3)
-        expect(first_item.stock.size).to eq("M")
+        expect(first_item.stock.size).to eq(:M)
         expect(first_item.stock.weight).to eq(700)
 
         second_item = items.last
