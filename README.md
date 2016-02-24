@@ -18,15 +18,92 @@ Or install it yourself as:
 
 ## Usage
 
+First initialize a client with your access key:
+
 ```ruby
 client = Openlogi::Client.new("apikey")
+```
+
+Then access Openlogi endpoints by calling RESTful actions on `items`, `warehousings` and `shipments`:
+
+### Items endpoint
+
+```ruby
 client.items.all
-#=> [#<Openlogi::Item:0x005622970fc7c8
-#  @barcode="12345111",
-#  @code="testsku",
-#  @id="OS239-I000001",
-#  @name="Test",
-#  @price="123">]
+=> [{"id"=>"OS239-I000001", "code"=>"testsku", "name"=>"foo", "price"=>123, "barcode"=>"12345111"},
+ {"id"=>"OS239-I000002", "code"=>"testcode", "name"=>"testitem23"},
+ {"id"=>"OS239-I000003", "code"=>"testsku1234", "name"=>"Testaaa", "price"=>123},
+ {"id"=>"OS239-I000004", "code"=>"testcode555", "name"=>"testitem23"},
+ {"id"=>"OS239-I000005", "code"=>"testcode555aaa", "name"=>"testitem23aaa"}]
+```
+
+### Warehousings endpoint
+```ruby
+client.warehousings.all
+=> [{"id"=>"OS239-W0003",
+  "status"=>"waiting",
+  "created_at"=>#<DateTime: 2016-02-23T11:34:28+09:00 ((2457442j,9268s,0n),+32400s,2299161j)>,
+  "items"=>[{"id"=>"OS239-I000006", "code"=>"testcode555aaaaaa", "name"=>"testitem23aaaaaa", "quantity"=>20}]},
+{"id"=>"OS239-W0002",
+  "status"=>"waiting",
+  "created_at"=>#<DateTime: 2016-02-23T10:47:51+09:00 ((2457442j,6471s,0n),+32400s,2299161j)>,
+  "items"=>[{"id"=>"OS239-I000006", "code"=>"testcode555aaaaaa", "name"=>"testitem23aaaaaa", "quantity"=>1}]}]
+```
+
+### Shipments endpoint
+```ruby
+client.shipments.all
+=> [{"id"=>"OS239-S000001",
+  "identifier"=>"test",
+  "order_no"=>nil,
+  "created_at"=>#<DateTime: 2016-02-23T11:00:21+09:00 ((2457442j,7221s,0n),+32400s,2299161j)>,
+  "recipient"=>{"postcode"=>"1660003", "prefecture"=>"東京都", "address1"=>"abc", "address2"=>nil, "name"=>"foo", "company"=>nil, "division"=>nil, "phone"=>"080-8888-8888"},
+  "sender"=>
+   {"postcode"=>"1800004",
+    "prefecture"=>"東京都",
+    "address1"=>"武蔵野市吉祥寺本町2-5-10",
+    "address2"=>"いちご吉祥寺ビル",
+    "name"=>"Foo",
+    "company"=>"Degica",
+    "division"=>"プログラマー",
+    "phone"=>"050-6861-0240"},
+  "subtotal_amount"=>nil,
+  "delivery_charge"=>nil,
+  "handling_charge"=>nil,
+  "discount_amount"=>nil,
+  "total_amount"=>nil,
+  "delivery_carrier"=>nil,
+  "delivery_time_slot"=>nil,
+  "delivery_date"=>nil,
+  "cash_on_delivery"=>false,
+  "delivery_method"=>nil,
+  "gift_wrapping_unit"=>nil,
+  "gift_wrapping_type"=>nil,
+  "gift_sender_name"=>nil,
+  "bundled_items"=>nil,
+  "delivery_options"=>nil,
+  "message"=>"",
+  "status"=>"working",
+  "items"=>[{"id"=>"OS239-I000006", "name"=>"testitem23aaaaaa", "code"=>"testcode555aaaaaa", "quantity"=>1, "unit_price"=>nil, "price"=>nil}]},
+ {"id"=>"OS239-S000002",
+  "identifier"=>"test2",
+  "order_no"=>nil,
+  "created_at"=>#<DateTime: 2016-02-23T11:36:08+09:00 ((2457442j,9368s,0n),+32400s,2299161j)>,
+  "recipient"=>{"postcode"=>"1660003", "prefecture"=>"東京都", "address1"=>"abc", "address2"=>nil, "name"=>"foo", "company"=>nil, "division"=>nil, "phone"=>"080-8888-8888"},
+  "sender"=>
+   {"postcode"=>"1800004",
+    "prefecture"=>"東京都",
+    "address1"=>"武蔵野市吉祥寺本町2-5-10",
+    "address2"=>"いちご吉祥寺ビル",
+    "name"=>"Foo",
+    "company"=>"Degica",
+    "division"=>"システム開発部",
+    "phone"=>"050-6861-0240"},
+  "subtotal_amount"=>nil,
+  "delivery_charge"=>nil,
+  "handling_charge"=>nil,
+  "discount_amount"=>nil,
+  "total_amount"=>nil,
 ```
 
 ## Development
