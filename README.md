@@ -28,6 +28,8 @@ Then access Openlogi endpoints by calling RESTful actions on `items`, `warehousi
 
 ### Items endpoint
 
+**`GET /api/items`**
+
 ```ruby
 client.items.all
 => [{"id"=>"OS239-I000001", "code"=>"testsku", "name"=>"foo", "price"=>123, "barcode"=>"12345111"},
@@ -37,7 +39,38 @@ client.items.all
  {"id"=>"OS239-I000005", "code"=>"testcode555aaa", "name"=>"testitem23aaa"}]
 ```
 
+**`GET /api/items/<id>`**
+
+```ruby
+client.items.find("OS239-I000001")
+=> {"id"=>"OS239-I000001", "code"=>"testsku", "name"=>"foo", "price"=>123, "barcode"=>"12345111"}
+```
+
+**`POST /api/items`**
+
+```ruby
+item = client.items.create(code: "myproductsku", name: "My Product", price: 100, barcode: "1234567890")
+=> {"id"=>"OS239-I000007", "code"=>"myproductsku", "name"=>"My Product", "price"=>100, "barcode"=>"1234567890"}
+```
+
+**`PUT /api/items/<id>`**
+
+```ruby
+client.items.update("OS239-I000007", name: "My New Name")
+=> {"id"=>"OS239-I000007", "code"=>"myproductsku", "name"=>"My New Name", "price"=>100, "barcode"=>"1234567890"}
+```
+
+**`DELETE /api/items/<id>`**
+
+```ruby
+client.items.destroy("OS239-I000007")
+=> {"id"=>"OS239-I000007", "code"=>"myproductsku", "name"=>"My New Name", "price"=>100, "barcode"=>"1234567890"}
+```
+
 ### Warehousings endpoint
+
+**`GET /api/warehousings`**
+
 ```ruby
 client.warehousings.all
 => [{"id"=>"OS239-W0003",
@@ -50,7 +83,12 @@ client.warehousings.all
   "items"=>[{"id"=>"OS239-I000006", "code"=>"testcode555aaaaaa", "name"=>"testitem23aaaaaa", "quantity"=>1}]}]
 ```
 
+Other actions behave the same as the items endpoint above.
+
 ### Shipments endpoint
+
+**`GET /api/shipments`**
+
 ```ruby
 client.shipments.all
 => [{"id"=>"OS239-S000001",
@@ -105,6 +143,8 @@ client.shipments.all
   "discount_amount"=>nil,
   "total_amount"=>nil,
 ```
+
+Other actions behave the same as the items endpoint above.
 
 ## Development
 
