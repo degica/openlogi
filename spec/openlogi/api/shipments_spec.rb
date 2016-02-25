@@ -263,4 +263,55 @@ describe Openlogi::Api::Shipments do
       expect(stub).to have_been_requested
     end
   end
+
+  describe "#modify" do
+    let!(:stub) do
+      stub_request(:post, "#{base_url}/#{id}/modify").
+        with(body: request_shipment.to_json).
+        to_return(body: response_shipment.to_json)
+    end
+    let(:bundled_items) { [] }
+    let(:items) do
+      [
+        {
+          "code" => "DQ002",
+          "quantity" => 4,
+          "name" => "つばさ",
+          "unit_price" => 550,
+          "price" => 2200
+        }
+      ]
+    end
+    let(:do_request) { endpoint.modify(id, request_shipment) }
+
+    it "makes correct request" do
+      do_request
+      expect(stub).to have_been_requested
+    end
+
+    it "assigns response" do
+      shipment = do_request
+
+      expect(shipment.id).to eq(id)
+      expect(shipment.bundled_items).to eq([])
+
+      expect(shipment.items.count).to eq(1)
+      shipment = shipment.items.first
+      expect(shipment.code).to eq("DQ002")
+    end
+  end
+
+  describe "#cancel" do
+    let!(:stub) do
+      stub_request(:post, "#{base_url}/#{id}/cancel").
+        with(body: {}.to_json).
+        to_return(body: response_shipment.to_json)
+    end
+    let(:do_request) { endpoint.cancel(id) }
+
+    it "makes correct request" do
+      do_request
+      expect(stub).to have_been_requested
+    end
+  end
 end

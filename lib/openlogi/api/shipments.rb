@@ -24,6 +24,14 @@ module Openlogi
       def destroy(id)
         perform_request_with_object(:delete, "shipments/#{id}", {})
       end
+
+      def modify(id, params)
+        perform_request_with_object(:post, "shipments/#{id}/modify", params)
+      end
+
+      def cancel(id)
+        perform_request_with_object(:post, "shipments/#{id}/cancel", {})
+      end
     end
   end
 end
