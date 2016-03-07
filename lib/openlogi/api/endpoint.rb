@@ -1,4 +1,4 @@
-require "openlogi/response_error"
+require "openlogi/invalid_response_error"
 
 module Openlogi
   module Api
@@ -17,7 +17,7 @@ module Openlogi
 
       def perform_request(method, resource, options = {})
         Openlogi::Request.new(client, method, resource, options).perform.tap do |response|
-          raise ResponseError.new(response) if response.invalid?
+          raise InvalidResponseError.new(response) if response.invalid?
         end
       end
 
