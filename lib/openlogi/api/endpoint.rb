@@ -1,3 +1,5 @@
+require "openlogi/response_error"
+
 module Openlogi
   module Api
     class Endpoint
@@ -14,7 +16,9 @@ module Openlogi
       private
 
       def perform_request(method, resource, options = {})
-        Openlogi::Request.new(client, method, resource, options).perform
+        Openlogi::Request.new(client, method, resource, options).perform.tap do |response|
+          raise ResponseError.new(response) if response.invalid?
+        end
       end
 
       def perform_request_with_object(method, resource, options)
