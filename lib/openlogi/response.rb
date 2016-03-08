@@ -11,8 +11,17 @@ module Openlogi
       @response = response
     end
 
+    def validate!
+      raise BadRequestError.new(self) if bad_request?
+      raise InternalServerError.new(self) if internal_server_error?
+    end
+
     def bad_request?
       response.response_code == 400
+    end
+
+    def internal_server_error?
+      response.response_code == 500
     end
 
     def error

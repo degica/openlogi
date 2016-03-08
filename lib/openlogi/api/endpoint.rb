@@ -14,7 +14,7 @@ module Openlogi
       def perform_request(method, resource, options = {})
         Openlogi::Request.new(client, method, resource, options).perform.tap do |response|
           client.last_response = response
-          raise BadRequestError.new(response) if response.bad_request?
+          response.validate!
         end
       end
 

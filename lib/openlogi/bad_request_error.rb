@@ -1,7 +1,4 @@
 module Openlogi
-  class BadRequestError < Exception
-    def initialize(response)
-      super(response.error_description)
-    end
+  class BadRequestError < ::Openlogi::Error
   end
 end
