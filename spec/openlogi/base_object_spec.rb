@@ -18,6 +18,11 @@ describe Openlogi::BaseObject do
       expect(object.valid?).to eq(true)
     end
 
+    it "returns true if object errors is nil" do
+      object = Openlogi::BaseObject.new({})
+      expect(object.valid?).to eq(true)
+    end
+
     it "returns false if object has errors" do
       object = Openlogi::BaseObject.new(errors: { "name" => [ "Already exist" ] })
       expect(object.valid?).to eq(false)
