@@ -4,14 +4,15 @@ module Openlogi
     include Hashie::Extensions::IndifferentAccess
 
     def initialize(attributes = {}, &block)
-      attributes.each_key do |key|
+      @attributes = attributes.to_hash.dup
+      @attributes.each_key do |key|
         if !self.class.property?(key)
-          attributes.delete(key)
+          @attributes.delete(key)
           warn "#{key} is not a property of #{self.class} and will be ignored."
         end
       end
 
-      super
+      super(@attributes, &block)
     end
 
     property :error
