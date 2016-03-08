@@ -11,8 +11,8 @@ module Openlogi
       @response = response
     end
 
-    def invalid?
-      error == "invalid_request"
+    def bad_request?
+      response.response_code == 400
     end
 
     def error

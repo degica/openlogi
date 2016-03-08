@@ -14,7 +14,9 @@ module Openlogi
       super
     end
 
+    property :error
     property :errors
+    property :error_description
 
     def valid?
       errors.empty?
