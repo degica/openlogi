@@ -14,12 +14,10 @@ module Openlogi
       super
     end
 
-    property :error
     property :errors
-    property :error_description
 
     def valid?
-      error.nil?
+      errors.empty?
     end
   end
 end

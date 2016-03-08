@@ -11,6 +11,18 @@ module Openlogi
       @response = response
     end
 
+    def invalid?
+      error == "invalid_request"
+    end
+
+    def error
+      json_response["error"]
+    end
+
+    def error_description
+      json_response["error_description"]
+    end
+
     private
 
     def json_response
