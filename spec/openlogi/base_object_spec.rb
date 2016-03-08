@@ -1,10 +1,14 @@
 require "spec_helper"
 
+class DummyObject < Openlogi::BaseObject
+  property :bar
+end
+
 describe Openlogi::BaseObject do
   describe ".new" do
     it "issues warning about attributes not defined as properties on object" do
-      expect_any_instance_of(Openlogi::BaseObject).to receive(:warn).once.with("foo is not a property of Openlogi::BaseObject and will be ignored.")
-      object = Openlogi::BaseObject.new(foo: "bar")
+      expect_any_instance_of(DummyObject).to receive(:warn).once.with("foo is not a property of DummyObject and will be ignored.")
+      object = DummyObject.new(foo: "foo", bar: "bar")
     end
   end
 
