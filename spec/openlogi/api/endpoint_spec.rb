@@ -8,8 +8,8 @@ describe Openlogi::Api::Endpoint do
     let(:request) { double("request", perform: response) }
     let(:endpoint) { Openlogi::Api::Endpoint.new(client) }
 
-    context "response is valid" do
-      let(:response) { double("response", invalid?: false) }
+    context "response is ok" do
+      let(:response) { double("response", bad_request?: false) }
 
       it "performs a request" do
         expect(Openlogi::Request).to receive(:new).once.with(client, "method", "resource", options).and_return(request)
@@ -25,13 +25,13 @@ describe Openlogi::Api::Endpoint do
     end
 
     context "response is invalid" do
-      let(:response) { double("response", invalid?: true, error_description: "foo error") }
+      let(:response) { double("response", bad_request?: true, error_description: "foo error") }
 
-      it "raises InvalidResponseError" do
+      it "raises BadRequestError" do
         allow(Openlogi::Request).to receive(:new).and_return(request)
         expect {
           endpoint.perform_request("method", "resource", options)
-        }.to raise_error(Openlogi::InvalidResponseError, "foo error")
+        }.to raise_error(Openlogi::BadRequestError, "foo error")
       end
     end
   end

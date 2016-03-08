@@ -1,5 +1,5 @@
 module Openlogi
-  class InvalidResponseError < Exception
+  class BadRequestError < Exception
     def initialize(response)
       super(response.error_description)
     end

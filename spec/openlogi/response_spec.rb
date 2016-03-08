@@ -2,17 +2,17 @@ require "spec_helper"
 
 describe Openlogi::Response do
 
-  describe "#invalid?" do
-    it "returns true if response has request_invalid error" do
-      http_response = double("response", response_body: "\{\"error\":\"invalid_request\"\}")
+  describe "#bad_request?" do
+    it "returns true if response code is 400" do
+      http_response = double("response", response_code: 400)
       response = Openlogi::Response.new(http_response)
-      expect(response.invalid?).to eq(true)
+      expect(response.bad_request?).to eq(true)
     end
 
-    it "returns false if response does not have request_invalid error" do
-      http_response = double("response", response_body: "\{\"error\":\"foo\"\}")
+    it "returns false if response code is not 400" do
+      http_response = double("response", response_code: 200)
       response = Openlogi::Response.new(http_response)
-      expect(response.invalid?).to eq(false)
+      expect(response.bad_request?).to eq(false)
     end
   end
 
