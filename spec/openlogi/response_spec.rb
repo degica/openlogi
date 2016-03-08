@@ -13,7 +13,6 @@ describe Openlogi::Response do
       http_response = double("response", response_body: "\{\"error\":\"foo\"\}")
       response = Openlogi::Response.new(http_response)
       expect(response.invalid?).to eq(false)
-
     end
   end
 
