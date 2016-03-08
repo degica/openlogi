@@ -26,12 +26,23 @@ describe Openlogi::Api::Endpoint do
 
     context "response is invalid" do
       let(:response) { double("response", bad_request?: true, error_description: "foo error") }
+      before do
+        allow(Openlogi::Request).to receive(:new).and_return(request)
+      end
 
       it "raises BadRequestError" do
-        allow(Openlogi::Request).to receive(:new).and_return(request)
         expect {
           endpoint.perform_request("method", "resource", options)
         }.to raise_error(Openlogi::BadRequestError, "foo error")
+      end
+
+      it "assigns response to client.last_response" do
+        begin
+          endpoint.perform_request("method", "resource", options)
+        rescue Openlogi::BadRequestError
+        end
+
+        expect(client.last_response).to eq(response)
       end
     end
   end
