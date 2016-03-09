@@ -1,16 +1,20 @@
 module Openlogi
   module Api
     class Endpoint
-      extend Forwardable
-
       attr_reader :client
-      def_delegators :all, :map, :each, :first, :last, :count, :size
 
       def initialize(client)
         @client = client
       end
 
-      def all
+      %w[map each first last count size].each do |method_name|
+        define_method method_name do |*args|
+          forwarded = args.empty? ? send(:all) : send(:all, args[0])
+          forwarded.send(method_name)
+        end
+      end
+
+      def all(*args)
         raise NotImplementedError
       end
 

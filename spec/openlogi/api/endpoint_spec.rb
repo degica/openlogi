@@ -45,5 +45,19 @@ describe Openlogi::Api::Endpoint do
         expect(client.last_response).to eq(response)
       end
     end
+
+    describe "delegators" do
+      let(:endpoint) { Openlogi::Api::Endpoint.new(double("client")) }
+
+      it "delegates iterator methods to all with arguments" do
+        expect(endpoint).to receive(:all).with(stock: true).and_return(["first"])
+        expect(endpoint.first(stock: true)).to eq("first")
+      end
+
+      it "delegates iterator methods to all without arguments" do
+        expect(endpoint).to receive(:all).with(no_args).and_return(["first"])
+        expect(endpoint.first).to eq("first")
+      end
+    end
   end
 end
