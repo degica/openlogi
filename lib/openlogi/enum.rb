@@ -10,7 +10,8 @@ module Openlogi
       if @values.include?(normalized = v.to_sym)
         normalized
       else
-        raise ArgumentError, "Value must be one of #{@values.join(", ")}"
+        warn "Expected value to be one of #{@values.join(", ")}"
+        v
       end
     end
   end
