@@ -1,10 +1,17 @@
 module Openlogi
   module Api
     class Endpoint
+      extend Forwardable
+
       attr_reader :client
+      def_delegators :all, :map, :each, :first, :last, :count, :size
 
       def initialize(client)
         @client = client
+      end
+
+      def all
+        raise NotImplementedError
       end
 
       def resource_class
