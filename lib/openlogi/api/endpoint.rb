@@ -8,9 +8,9 @@ module Openlogi
       end
 
       %w[map each first last count size].each do |method_name|
-        define_method method_name do |*args|
-          forwarded = args.empty? ? send(:all) : send(:all, args[0])
-          forwarded.send(method_name)
+        define_method method_name do |*args, &block|
+          forwarded = args.empty? ? send(:all) : send(:all, *args)
+          forwarded.send(method_name, &block)
         end
       end
 
