@@ -20,7 +20,7 @@ module Openlogi
     property :error_description
 
     def valid?
-      errors.nil? || errors.empty?
+      error.nil? && (errors.nil? || errors.empty?)
     end
   end
 end
