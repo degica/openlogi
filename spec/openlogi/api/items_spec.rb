@@ -1,8 +1,7 @@
 require "spec_helper"
 
 describe Openlogi::Api::Items do
-  let(:access_token) { "accesstoken" }
-  let(:client) { Openlogi::Client.new(access_token) }
+  let(:client) { Openlogi::Client.new }
   let(:base_url) { "https://api-demo.openlogi.com/api/items" }
   let(:endpoint) { described_class.new(client) }
 
