@@ -1,6 +1,9 @@
+require "openlogi/errors"
+
 module Openlogi
   class BaseObject < Hashie::Dash
     include Hashie::Extensions::Dash::Coercion
+    include Hashie::Extensions::MergeInitializer
     include Hashie::Extensions::IndifferentAccess
 
     def initialize(attributes = {}, &block)
