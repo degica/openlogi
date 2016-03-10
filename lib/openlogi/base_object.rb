@@ -18,9 +18,9 @@ module Openlogi
       super(@attributes, &block)
     end
 
-    property :error
+    property :error, coerce: String
     property :errors, coerce: Openlogi::Errors
-    property :error_description
+    property :error_description, coerce: String
 
     def valid?
       error.nil? && (errors.nil? || errors.empty?)
