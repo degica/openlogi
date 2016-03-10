@@ -16,7 +16,7 @@ module Openlogi
     end
 
     property :error
-    property :errors
+    property :errors, coerce: Openlogi::Errors
     property :error_description
 
     def valid?
