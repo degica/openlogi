@@ -38,4 +38,14 @@ describe Openlogi::BaseObject do
       expect(object.valid?).to eq(false)
     end
   end
+
+  describe "#errors" do
+    it "returns errors object with full messages" do
+      object = Openlogi::BaseObject.new(errors: {
+        "identifier" => ["order noを指定しない場合は、identifierを指定してください。"],
+        "order_no" => ["identifierを指定しない場合は、order noを指定してください。"]
+      })
+      expect(object.errors.full_messages).to eq("order noを指定しない場合は、identifierを指定してください。identifierを指定しない場合は、order noを指定してください。")
+    end
+  end
 end

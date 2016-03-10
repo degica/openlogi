@@ -1,6 +1,9 @@
+require "openlogi/errors"
+
 module Openlogi
   class BaseObject < Hashie::Dash
     include Hashie::Extensions::Dash::Coercion
+    include Hashie::Extensions::MergeInitializer
     include Hashie::Extensions::IndifferentAccess
 
     def initialize(attributes = {}, &block)
@@ -15,12 +18,12 @@ module Openlogi
       super(@attributes, &block)
     end
 
-    property :error
-    property :errors
-    property :error_description
+    property :error, coerce: String
+    property :errors, coerce: Openlogi::Errors, default: {}
+    property :error_description, coerce: String
 
     def valid?
-      error.nil? && (errors.nil? || errors.empty?)
+      error.nil? && errors.empty?
     end
   end
 end
