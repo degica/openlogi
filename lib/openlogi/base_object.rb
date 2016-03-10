@@ -19,11 +19,11 @@ module Openlogi
     end
 
     property :error, coerce: String
-    property :errors, coerce: Openlogi::Errors
+    property :errors, coerce: Openlogi::Errors, default: {}
     property :error_description, coerce: String
 
     def valid?
-      error.nil? && (errors.nil? || errors.empty?)
+      error.nil? && errors.empty?
     end
   end
 end
