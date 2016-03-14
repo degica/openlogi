@@ -9,8 +9,11 @@ module Openlogi
     def self.coerce(v)
       if @values.include?(normalized = v.to_sym)
         normalized
+      elsif v == ""
+        nil
       else
-        raise ArgumentError, "Value must be one of #{@values.join(", ")}"
+        warn "Expected value to be one of #{@values.join(", ")}"
+        v
       end
     end
   end
