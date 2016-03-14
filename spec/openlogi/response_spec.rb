@@ -31,6 +31,13 @@ describe Openlogi::Response do
       end
     end
 
+    context "response is access denied" do
+      it "raises AccessDeniedError" do
+        response = Openlogi::Response.new(double("response", response_code: 401, response_body: "\{\"error_description\":\"foo\"\}"))
+        expect { response.validate! }.to raise_error(Openlogi::AccessDeniedError, "foo")
+      end
+    end
+
     context "response is a server error" do
       it "raises InternalServerError" do
         response = Openlogi::Response.new(double("response", response_code: 500, response_body: "\{\"error_description\":\"foo\"\}"))
