@@ -1,11 +1,9 @@
 module Openlogi
   class Client
-    attr_reader :access_token, :test_mode
     attr_accessor :last_response
 
-    def initialize(access_token, test_mode: true)
-      @access_token = access_token
-      @test_mode = test_mode
+    def configuration
+      Openlogi.configuration
     end
 
     def test_mode?
@@ -27,5 +25,8 @@ module Openlogi
     def shipments
       @shipments ||= Api::Shipments.new(self)
     end
+
+    extend Forwardable
+    def_delegators :configuration, :access_token, :test_mode
   end
 end

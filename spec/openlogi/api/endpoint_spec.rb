@@ -3,7 +3,7 @@ require "spec_helper"
 describe Openlogi::Api::Endpoint do
 
   describe "#perform_request" do
-    let(:client) { Openlogi::Client.new(access_token: "foo") }
+    let(:client) { Openlogi::Client.new }
     let(:options) { double("options") }
     let(:request) { double("request", perform: response) }
     let(:endpoint) { Openlogi::Api::Endpoint.new(client) }
