@@ -18,13 +18,22 @@ Or install it yourself as:
 
 ## Usage
 
-First initialize a client with your access key:
+First initialize the gem with your Openlogi access key:
 
 ```ruby
-client = Openlogi::Client.new("apikey")
+Openlogi.configure do |c|
+  c.access_token = "apikey"
+  c.test_mode = true # defaults to true
+end
 ```
 
-Then access Openlogi endpoints by calling RESTful actions on `items`, `warehousings` and `shipments`:
+Then create a client to make requests:
+
+```ruby
+client = Openlogi::Client.new
+```
+
+Access Openlogi endpoints by calling RESTful actions on `items`, `warehousings` and `shipments`:
 
 ### Items endpoint
 
