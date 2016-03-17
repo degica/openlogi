@@ -110,7 +110,7 @@ describe Openlogi::Api::Shipments do
         expect(shipment.gift_wrapping_type).to eq(:NAVY)
         expect(shipment.gift_sender_name).to eq("ブルー トー")
         expect(shipment.bundled_items).to eq(["DQ008","DQ009"])
-        expect(shipment.status).to eq("shipped")
+        expect(shipment.status).to eq(:SHIPPED)
         expect(shipment.shipped_at).to eq(DateTime.new(2015, 1, 1, 15, 0, 0, "JST"))
 
         # items
@@ -175,7 +175,7 @@ describe Openlogi::Api::Shipments do
 
         shipment = shipments.first
         expect(shipment.id).to eq(id)
-        expect(shipment.status).to eq("shipped")
+        expect(shipment.status).to eq(:SHIPPED)
         expect(shipment.tracking_code).to eq("516118852152")
       end
     end

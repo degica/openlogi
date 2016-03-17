@@ -7,7 +7,7 @@ module Openlogi
     end
 
     def self.coerce(v)
-      if @values.include?(normalized = v.to_sym)
+      if @values.include?(normalized = v.to_sym.upcase)
         normalized
       elsif v == ""
         nil
