@@ -1,6 +1,7 @@
 require "openlogi/base_object"
 require "openlogi/stock"
 require "openlogi/international_info"
+require "openlogi/image"
 require "openlogi/boolean"
 
 module Openlogi
@@ -16,5 +17,6 @@ module Openlogi
     property :quantity, coerce: Integer
     property :gift_wrapping_type, coerce: Enum[:NAVY, :RED, :PINK, :BROWN, :WHITE]
     property :backorder_if_unavailable, coerce: Boolean
+    property :images, coerce: Array[Image]
   end
 end
