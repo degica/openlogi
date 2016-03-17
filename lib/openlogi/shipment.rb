@@ -32,5 +32,6 @@ module Openlogi
     property :message
     property :status
     property :items, coerce: Array[Item]
+    property :tracking_code
   end
 end

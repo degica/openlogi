@@ -57,9 +57,10 @@ describe Openlogi::Api::Shipments do
   end
 
   describe "#find" do
+    let(:status) { "shipped" }
     let!(:stub) do
       stub_request(:get, "#{base_url}/#{id}").
-        to_return(body: response_shipment.merge("status" => "shipped", "shipped_at" => "2015-01-01T15:00:00+0900").to_json)
+        to_return(body: response_shipment.merge("shipped_at" => "2015-01-01T15:00:00+0900").to_json)
     end
     let(:do_request) { endpoint.find(id) }
 
@@ -162,7 +163,7 @@ describe Openlogi::Api::Shipments do
     let(:status) { "shipped" }
     let!(:stub) do
       stub_request(:get, "#{base_url}/shipped").
-        to_return(body: {"shipments" => [response_shipment] }.to_json)
+        to_return(body: {"shipments" => [response_shipment.merge(tracking_code: "516118852152")] }.to_json)
     end
     let(:do_request) { endpoint.shipped }
 
@@ -175,6 +176,7 @@ describe Openlogi::Api::Shipments do
         shipment = shipments.first
         expect(shipment.id).to eq(id)
         expect(shipment.status).to eq("shipped")
+        expect(shipment.tracking_code).to eq("516118852152")
       end
     end
   end
