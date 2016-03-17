@@ -13,6 +13,10 @@ module Openlogi
         perform_request_with_objects(:get, "shipments", {})
       end
 
+      def shipped
+        perform_request_with_objects(:get, "shipments/shipped", {})
+      end
+
       def update(id, params)
         perform_request_with_object(:put, "shipments/#{id}", params)
       end

@@ -57,9 +57,10 @@ describe Openlogi::Api::Shipments do
   end
 
   describe "#find" do
+    let(:status) { "shipped" }
     let!(:stub) do
       stub_request(:get, "#{base_url}/#{id}").
-        to_return(body: response_shipment.merge("status" => "shipped", "shipped_at" => "2015-01-01T15:00:00+0900").to_json)
+        to_return(body: response_shipment.merge("shipped_at" => "2015-01-01T15:00:00+0900").to_json)
     end
     let(:do_request) { endpoint.find(id) }
 
@@ -109,7 +110,7 @@ describe Openlogi::Api::Shipments do
         expect(shipment.gift_wrapping_type).to eq(:NAVY)
         expect(shipment.gift_sender_name).to eq("ブルー トー")
         expect(shipment.bundled_items).to eq(["DQ008","DQ009"])
-        expect(shipment.status).to eq("shipped")
+        expect(shipment.status).to eq(:SHIPPED)
         expect(shipment.shipped_at).to eq(DateTime.new(2015, 1, 1, 15, 0, 0, "JST"))
 
         # items
@@ -154,6 +155,28 @@ describe Openlogi::Api::Shipments do
         expect(shipment.recipient.postcode).to eq("111-0002")
         expect(shipment.sender.postcode).to eq("111-0003")
         expect(shipment.items.count).to eq(2)
+      end
+    end
+  end
+
+  describe "#shipped" do
+    let(:status) { "shipped" }
+    let!(:stub) do
+      stub_request(:get, "#{base_url}/shipped").
+        to_return(body: {"shipments" => [response_shipment.merge(tracking_code: "516118852152")] }.to_json)
+    end
+    let(:do_request) { endpoint.shipped }
+
+    it "assigns response" do
+      shipments = do_request
+
+      aggregate_failures "testing response" do
+        expect(shipments.size).to eq(1)
+
+        shipment = shipments.first
+        expect(shipment.id).to eq(id)
+        expect(shipment.status).to eq(:SHIPPED)
+        expect(shipment.tracking_code).to eq("516118852152")
       end
     end
   end

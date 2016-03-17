@@ -30,7 +30,8 @@ module Openlogi
     property :cash_on_delivery, coerce: Boolean
     property :shipping_email
     property :message
-    property :status
+    property :status, coerce: Enum[:WAITING, :WORKING, :SHIPPED]
     property :items, coerce: Array[Item]
+    property :tracking_code
   end
 end
