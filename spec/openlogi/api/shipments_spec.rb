@@ -158,6 +158,27 @@ describe Openlogi::Api::Shipments do
     end
   end
 
+  describe "#shipped" do
+    let(:status) { "shipped" }
+    let!(:stub) do
+      stub_request(:get, "#{base_url}/shipped").
+        to_return(body: {"shipments" => [response_shipment] }.to_json)
+    end
+    let(:do_request) { endpoint.shipped }
+
+    it "assigns response" do
+      shipments = do_request
+
+      aggregate_failures "testing response" do
+        expect(shipments.size).to eq(1)
+
+        shipment = shipments.first
+        expect(shipment.id).to eq(id)
+        expect(shipment.status).to eq("shipped")
+      end
+    end
+  end
+
   describe "#update" do
     let(:bundled_items) { [] }
     let(:items) do
