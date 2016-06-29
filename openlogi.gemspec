@@ -35,4 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "webmock", "~> 1.24"
   spec.add_development_dependency "guard-rspec", "~> 4.6"
+  # remove once we deprecate ruby 2.1 support
+  spec.add_development_dependency "listen", "~> 3.0.5"
 end
