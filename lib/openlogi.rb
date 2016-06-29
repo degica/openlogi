@@ -28,13 +28,4 @@ require "openlogi/internal_server_error"
 require "openlogi/client"
 
 module Openlogi
-  class << self
-    def configure
-      yield configuration
-    end
-
-    def configuration
-      @configuration ||= Openlogi::Configuration.new
-    end
-  end
 end

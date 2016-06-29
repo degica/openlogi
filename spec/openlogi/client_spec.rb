@@ -3,6 +3,27 @@ require "spec_helper"
 describe Openlogi::Client do
   let(:client) { Openlogi::Client.new }
 
+  describe "#configuration" do
+    it "returns a new configuration" do
+      expect(client.configuration).to be_a(Openlogi::Configuration)
+    end
+
+    it "memoizes configuration" do
+      configuration = client.configuration
+      expect(client.configuration).to eq(configuration)
+    end
+  end
+
+  describe "#configure" do
+    it "configures client" do
+      client.configure do |configuration|
+        configuration.access_token = "mytoken"
+      end
+
+      expect(client.access_token).to eq("mytoken")
+    end
+  end
+
   describe "#endpoint" do
     it "returns test point endpoint when test mode is true" do
       client = Openlogi::Client.new
@@ -10,7 +31,7 @@ describe Openlogi::Client do
     end
 
     it "returns production endpoint when test mode is false" do
-      allow(Openlogi.configuration).to receive(:test_mode).and_return(false)
+      allow(client.configuration).to receive(:test_mode).and_return(false)
       expect(client.endpoint).to eq("https://api.openlogi.com")
     end
   end
