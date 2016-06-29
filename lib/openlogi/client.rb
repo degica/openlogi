@@ -2,8 +2,12 @@ module Openlogi
   class Client
     attr_accessor :last_response
 
+    def configure
+      yield configuration
+    end
+
     def configuration
-      Openlogi.configuration
+      @configuration ||= Openlogi::Configuration.new
     end
 
     def test_mode?
