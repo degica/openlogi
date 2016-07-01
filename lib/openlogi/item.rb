@@ -12,6 +12,7 @@ module Openlogi
     property :price, coerce: Integer
     property :unit_price, coerce: Integer
     property :barcode
+    property :jancode
     property :international_info, coerce: InternationalInfo
     property :stock, coerce: Stock
     property :quantity, coerce: Integer
