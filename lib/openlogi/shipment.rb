@@ -33,5 +33,9 @@ module Openlogi
     property :status, coerce: Enum[:WAITING, :WORKING, :SHIPPED, :BACKORDERED]
     property :items, coerce: Array[Item]
     property :tracking_code
+    property :cushioning
+    property :cushioning_label
+    property :fba_shipment_id
+    property :package_quantity, coerce: Integer
   end
 end
