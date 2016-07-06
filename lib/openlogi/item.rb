@@ -19,5 +19,6 @@ module Openlogi
     property :gift_wrapping_type, coerce: Enum[:NAVY, :RED, :PINK, :BROWN, :WHITE]
     property :backorder_if_unavailable, coerce: Boolean
     property :images, coerce: Array[Image]
+    property :serial_no
   end
 end
