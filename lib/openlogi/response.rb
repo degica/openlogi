@@ -33,6 +33,10 @@ module Openlogi
       json_response["error"]
     end
 
+    def errors
+      json_response["errors"]
+    end
+
     def error_description
       json_response["error_description"]
     end
