@@ -30,6 +30,10 @@ module Openlogi
       @shipments ||= Api::Shipments.new(self)
     end
 
+    def validations
+      @validations ||= Api::Validations.new(self)
+    end
+
     extend Forwardable
     def_delegators :configuration, :access_token, :test_mode
   end
