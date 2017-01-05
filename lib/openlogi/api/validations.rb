@@ -12,7 +12,7 @@ module Openlogi
       end
 
       def validate_sender(params)
-        perform_request_with_object(:post, "validations/sender", { recipient: params })
+        perform_request_with_object(:post, "validations/sender", { sender: params })
       end
     end
   end
