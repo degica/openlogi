@@ -55,4 +55,8 @@ describe Openlogi::Client do
   describe "#shipments" do
     it_behaves_like "api endpoint", "shipments", Openlogi::Api::Shipments
   end
+
+  describe "#shipments" do
+    it_behaves_like "api endpoint", "validations", Openlogi::Api::Validations
+  end
 end
